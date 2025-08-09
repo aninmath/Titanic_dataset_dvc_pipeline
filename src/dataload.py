@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 
 
 
+
 log_dir = 'logs'
 os.makedirs(log_dir,exist_ok=True)
 
@@ -28,9 +29,11 @@ logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
 
-def load_data (data_url -> str) -> pd.dataframe:
+
+def load_data (data_url:str ) -> pd.DataFrame :
+    """load the data from URL"""
     try:
-        df = pd.read_csv(url)
+        df = pd.read_csv(data_url)
         logger.debug('Data loaded from %s', data_url)
         return df
 
@@ -43,9 +46,51 @@ def load_data (data_url -> str) -> pd.dataframe:
         raise
 
 
+def preprocess_data (df:pd.DataFrame ) -> pd.DataFrame :
+    try:
+        df.drop(['PassengerId', 'Name', 'Ticket', 'Cabin'], axis=1, inplace = True)
+        logger.debug('Data preprocessing completed')
+        return df
+
+    except  KeyError as e:
+        logger.error('Missing column in dataframe: %s', e)
+        raise 
+    
+    except Exception as e:
+        logger.error('Unexpected error occurred while preprocessing %s', e)
+        raise
+
+
+def save_data(train_data: np.ndarray,test_data:np.ndarray ,data_path: str) -> None:
+    """save data"""
+    try:
+        raw_data_path = os.path.join(data_path,'raw')
+        os.makedirs(raw_data_path,exist_ok=True)
+        train_data.to_csv(os.path.join(raw_data_path,"train.csv"), index = False)
+        test_data.to_csv(os.path.join(raw_data_path,"test.csv"), index = False)
+        logger.debug("train test file saved")
+
+    except Exception as e:
+        logger.error("error happened %s",e)
+        raise
+
+
+
+
 def main():
     try:
-        data_path = 
-        df = load_data()
+        data_path = 'https://raw.githubusercontent.com/aninmath/Titanic_dataset_dvc_pipeline/refs/heads/main/experiments/Titanic-Dataset.csv'
+        df = load_data(data_path)
+        logger.debug('Data loaded from from main %s', data_path)
+        final_df = preprocess_data(df)
+        train_data, test_data = train_test_split(final_df, test_size= 0.2, random_state= 42)
+        save_data(train_data,test_data, './data')
+
+    except Exception as e:
+        logger.error('Failed to complete the data ingestion process: %s', e)
+        
+
+if __name__ == '__main__':
+    main()
 
 
