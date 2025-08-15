@@ -11,14 +11,14 @@ log_dir = 'logs'
 os.makedirs(log_dir, exist_ok= True)
 
 
-logger = logging.getLogger('model building')
+logger = logging.getLogger('model building.log')
 logger.setLevel('DEBUG')
 
 
 console_handler = logging.StreamHandler()
 console_handler.setLevel('DEBUG')
 
-log_file_path = os.path.join(log_dir,'model_building')
+log_file_path = os.path.join(log_dir,'model_building.log')
 file_handler = logging.FileHandler(log_file_path)
 file_handler.setLevel('DEBUG')
 
@@ -93,7 +93,7 @@ def save_model(model, file_path):
     """
     try:
         # Ensure the directory exists
-        os.makedirs(file_path, exist_ok=True)
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
         
         with open(file_path, 'wb') as file:
             pickle.dump(model, file)
