@@ -125,6 +125,7 @@ def main():
         
     except Exception as e:
         logger.error("problem in feature engg %s",e)
+        raise
     
 
 
