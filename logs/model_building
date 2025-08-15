@@ -1,0 +1,23 @@
+2025-08-14 13:21:28,164 - model building - DEBUG - Data loaded from ./data/interim/train.csv with shape (712, 13)
+2025-08-15 13:20:38,278 - model building - DEBUG - Data loaded from ./data/interim/train.csv with shape (712, 13)
+2025-08-15 13:20:38,282 - model building - DEBUG - Initializing RandomForest model with parameters: {'n_estimator': 25, 'random_state': 2}
+2025-08-15 13:20:38,283 - model building - ERROR - Error during model training: 'n_estimators'
+2025-08-15 13:20:38,283 - model building - ERROR - problem in model building : 'n_estimators'
+2025-08-15 13:21:05,371 - model building - DEBUG - Data loaded from ./data/interim/train.csv with shape (712, 13)
+2025-08-15 13:21:05,371 - model building - DEBUG - Initializing RandomForest model with parameters: {'n_estimators': 25, 'random_state': 2}
+2025-08-15 13:21:05,372 - model building - DEBUG - Model training started with 712 samples
+2025-08-15 13:21:05,407 - model building - DEBUG - Model training completed
+2025-08-15 13:22:13,236 - model building - DEBUG - Data loaded from ./data/interim/train.csv with shape (712, 13)
+2025-08-15 13:22:13,238 - model building - DEBUG - Initializing RandomForest model with parameters: {'n_estimators': 25, 'random_state': 2}
+2025-08-15 13:22:13,238 - model building - DEBUG - Model training started with 712 samples
+2025-08-15 13:22:13,278 - model building - DEBUG - Model training completed
+2025-08-15 13:23:51,889 - model building - DEBUG - Data loaded from ./data/interim/train.csv with shape (712, 13)
+2025-08-15 13:23:51,890 - model building - DEBUG - Initializing RandomForest model with parameters: {'n_estimators': 25, 'random_state': 2}
+2025-08-15 13:23:51,891 - model building - DEBUG - Model training started with 712 samples
+2025-08-15 13:23:51,921 - model building - DEBUG - Model training completed
+2025-08-15 13:23:51,930 - model building - DEBUG - Model saved to model/model.pkl
+2025-08-15 13:24:16,094 - model building - DEBUG - Data loaded from ./data/interim/train.csv with shape (712, 13)
+2025-08-15 13:24:16,095 - model building - DEBUG - Initializing RandomForest model with parameters: {'n_estimators': 25, 'random_state': 2}
+2025-08-15 13:24:16,095 - model building - DEBUG - Model training started with 712 samples
+2025-08-15 13:24:16,134 - model building - DEBUG - Model training completed
+2025-08-15 13:24:16,141 - model building - DEBUG - Model saved to ./modl/model.pkl
