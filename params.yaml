@@ -1,0 +1,7 @@
+data load:
+    test_size: 0.20
+
+model_building:
+    n_estimators: 22
+    random_state: 2
+    

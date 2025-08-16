@@ -5,6 +5,8 @@ import os
 import logging
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier
+import yaml
+from dataload import load_params
 
 
 log_dir = 'logs'
@@ -113,13 +115,9 @@ def main():
         train = load_data(path)
         X_train = train.iloc[:, :-1].values
         y_train = train.iloc[:, -1].values
-
-        params = {'n_estimators': 25, 'random_state': 2}
-
+        params = load_params('params.yaml')['model_building']
         clf = model_training(X_train, y_train, params)
-
         model_save_path = './model/model.pkl'
-
         save_model(clf,model_save_path)
 
     except Exception as e:
