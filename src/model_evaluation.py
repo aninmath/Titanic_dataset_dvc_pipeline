@@ -5,6 +5,9 @@ import pickle
 import json
 from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_auc_score
 import logging
+import yaml
+from dvclive import Live
+from dataload import load_params
 
 # Ensure the "logs" directory exists
 log_dir = 'logs'
@@ -95,13 +98,21 @@ def save_metrics(metrics: dict, file_path: str) -> None:
 
 def main():
     try:
-       
+        params = load_params(params_path='params.yaml')
+
         clf = load_model('./model/model.pkl')
         test_data = load_data('./data/interim/test.csv')
         
         X_test = test_data.iloc[:, :-1].values
         y_test = test_data.iloc[:, -1].values
 
+        # Experiment tracking using dvclive
+
+        with Live(save_dvc_exp=True) as live:
+            live.log_metric('accuracy', accuracy_score(y_test, y_test))
+            live.log_metric('precision', precision_score(y_test, y_test))
+            live.log_metric('recall', recall_score(y_test, y_test))
+        
         metrics = evaluate_model(clf, X_test, y_test)
         save_metrics(metrics, 'reports/metrics.json')
     except Exception as e:

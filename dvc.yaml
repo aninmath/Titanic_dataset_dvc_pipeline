@@ -3,8 +3,8 @@ stages:
     cmd: python src/dataload.py
     deps:
     - src/dataload.py
-    # params:
-    # - data_ingestion.test_size
+    params:
+    - data load.test_size
     outs:
     - data/raw
   data_preprocessing:
@@ -19,9 +19,9 @@ stages:
     deps:
     - data/interim
     - src/model.py
-    # params:
-    # - model_building.n_estimators
-    # - model_building.random_state
+    params:
+    - model_building.n_estimators
+    - model_building.random_state
     outs:
     - model/model.pkl
   model_evaluation:
